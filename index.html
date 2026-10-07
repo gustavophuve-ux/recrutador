@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu Emprego - Cadastre seu Currículo</title>
+
+    <style>
+
+        /* =========================
+           CONFIGURAÇÕES GERAIS
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #071a35;
+            color: #333;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================== */
+
+        header {
+            background: #ffffff;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            color: #071a35;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #174d8c;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #071a35;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #174d8c;
+        }
+
+        /* =========================
+           ÁREA PRINCIPAL
+        ========================== */
+
+        main {
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+        }
+
+        /* =========================
+           TÍTULO
+        ========================== */
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .titulo h1 {
+            color: #071a35;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* =========================
+           SEÇÕES
+        ========================== */
+
+        .secao {
+            margin-bottom: 30px;
+        }
+
+        .secao h2 {
+            color: #071a35;
+            border-bottom: 2px solid #071a35;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        /* =========================
+           CAMPOS
+        ========================== */
+
+        .linha {
+            display: flex;
+            gap: 20px;
+        }
+
+        .campo {
+            flex: 1;
+            margin-bottom: 18px;
+        }
+
+        .campo label {
+            display: block;
+            color: #071a35;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .campo input,
+        .campo select,
+        .campo textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccd2da;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .campo input:focus,
+        .campo select:focus,
+        .campo textarea:focus {
+            border-color: #071a35;
+            box-shadow: 0 0 5px rgba(7,26,53,0.2);
+        }
+
+        .campo textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* =========================
+           ENVIO DO CURRÍCULO
+        ========================== */
+
+        .upload {
+            border: 2px dashed #174d8c;
+            background: #f5f8fc;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .upload p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .upload input {
+            border: none;
+        }
+
+        /* =========================
+           BOTÃO
+        ========================== */
+
+        .botao {
+            width: 100%;
+            padding: 16px;
+            background: #071a35;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background: #174d8c;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           MENSAGEM
+        ========================== */
+
+        #mensagem {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .sucesso {
+            color: #16803c;
+        }
+
+        .erro {
+            color: #d32f2f;
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================== */
+
+        footer {
+            text-align: center;
+            color: #ffffff;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================== */
+
+        @media (max-width: 650px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            .linha {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .titulo h1 {
+                font-size: 26px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header>
+
+        <div class="logo">
+            Meu<span>Emprego</span>
+        </div>
+
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Vagas</a>
+            <a href="#">Sobre nós</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
+
+    <main>
+
+        <div class="container">
+
+            <div class="titulo">
+
+                <h1>Cadastre seu currículo</h1>
+
+                <p>
+                    Encontre novas oportunidades de emprego
+                    cadastrando seu perfil profissional.
+                </p>
+
+            </div>
+
+
+            <form id="curriculoForm">
+
+
+                <!-- =========================
+                     DADOS PESSOAIS
+                ========================== -->
+
+                <div class="secao">
+
+                    <h2>Dados pessoais</h2>
+
+                    <div class="linha">
+
+                        <div class="campo">
+
+                            <label for="nome">
+                                Nome completo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nome"
+                                placeholder="Digite seu nome completo"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="nascimento">
+                                Data de nascimento
+                            </label>
+
+                            <input
+                                type="date"
+                                id="nascimento"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="linha">
+
+                        <div class="campo">
+
+                            <label for="email">
+                                E-mail
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="seuemail@email.com"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="telefone">
+                                Telefone
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="telefone"
+                                placeholder="(00) 00000-0000"
+                                maxlength="15"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="cidade">
+                            Cidade
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cidade"
+                            placeholder="Ex.: São Paulo"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     INFORMAÇÕES PROFISSIONAIS
+                ========================== -->
+
+                <div class="secao">
+
+                    <h2>Informações profissionais</h2>
+
+
+                    <div class="campo">
+
+                        <label for="cargo">
+                            Cargo desejado
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cargo"
+                            placeholder="Ex.: Assistente administrativo"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="experiencia">
+                            Experiência profissional
+                        </label>
+
+                        <textarea
+                            id="experiencia"
+                            placeholder="Conte um pouco sobre suas experiências profissionais..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="formacao">
+                            Formação acadêmica
+                        </label>
+
+                        <textarea
+                            id="formacao"
+                            placeholder="Ex.: Ensino médio completo, Administração - Universidade..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="habilidades">
+                            Habilidades
+                        </label>
+
+                        <textarea
+                            id="habilidades"
+                            placeholder="Ex.: Excel, atendimento ao cliente, comunicação..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     CURRÍCULO
+                ========================== -->
+
+                <div class="secao">
+
+                    <h2>Seu currículo</h2>
+
+                    <div class="upload">
+
+                        <p>
+                            Selecione seu currículo em formato PDF.
+                        </p>
+
+                        <input
+                            type="file"
+                            id="curriculo"
+                            accept=".pdf"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     BOTÃO
+                ========================== -->
+
+                <button
+                    type="submit"
+                    class="botao"
+                >
+                    Cadastrar meu currículo
+                </button>
+
+
+                <div id="mensagem"></div>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer>
+
+        © 2026 MeuEmprego - Conectando pessoas
+        a novas oportunidades.
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        const formulario =
+            document.getElementById("curriculoForm");
+
+        const telefone =
+            document.getElementById("telefone");
+
+        const curriculo =
+            document.getElementById("curriculo");
+
+        const mensagem =
+            document.getElementById("mensagem");
+
+
+        /* =========================
+           MÁSCARA DO TELEFONE
+        ========================== */
+
+        telefone.addEventListener("input", function () {
+
+            let valor =
+                this.value.replace(/\D/g, "");
+
+            if (valor.length <= 10) {
+
+                valor = valor.replace(
+                    /(\d{2})(\d)/,
+                    "($1) $2"
+                );
+
+                valor = valor.replace(
+                    /(\d{4})(\d)/,
+                    "$1-$2"
+                );
+
+            } else {
+
+                valor = valor.replace(
+                    /(\d{2})(\d)/,
+                    "($1) $2"
+                );
+
+                valor = valor.replace(
+                    /(\d{5})(\d)/,
+                    "$1-$2"
+                );
+
+            }
+
+            this.value = valor;
+
+        });
+
+
+        /* =========================
+           ENVIO DO FORMULÁRIO
+        ========================== */
+
+        formulario.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const nome =
+                    document
+                    .getElementById("nome")
+                    .value
+                    .trim();
+
+
+                const email =
+                    document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+                const cargo =
+                    document
+                    .getElementById("cargo")
+                    .value
+                    .trim();
+
+
+                const telefoneNumeros =
+                    telefone.value.replace(
+                        /\D/g,
+                        ""
+                    );
+
+
+                /* =========================
+                   VALIDAÇÕES
+                ========================== */
+
+                if (nome.length < 3) {
+
+                    mensagem.textContent =
+                        "Digite seu nome completo.";
+
+                    mensagem.className = "erro";
+
+                    return;
+                }
+
+
+                if (telefoneNumeros.length < 10) {
+
+                    mensagem.textContent =
+                        "Digite um telefone válido.";
+
+                    mensagem.className = "erro";
+
+                    return;
+                }
+
+
+                if (cargo.length < 2) {
+
+                    mensagem.textContent =
+                        "Digite o cargo desejado.";
+
+                    mensagem.className = "erro";
+
+                    return;
+                }
+
+
+                /* =========================
+                   VALIDAÇÃO DO PDF
+                ========================== */
+
+                if (curriculo.files.length === 0) {
+
+                    mensagem.textContent =
+                        "Selecione seu currículo em PDF.";
+
+                    mensagem.className = "erro";
+
+                    return;
+                }
+
+
+                const arquivo =
+                    curriculo.files[0];
+
+
+                if (arquivo.type !== "application/pdf") {
+
+                    mensagem.textContent =
+                        "O currículo precisa estar em PDF.";
+
+                    mensagem.className = "erro";
+
+                    return;
+                }
+
+
+                /* =========================
+                   SUCESSO
+                ========================== */
+
+                mensagem.textContent =
+                    "Currículo cadastrado com sucesso!";
+
+                mensagem.className = "sucesso";
+
+
+                console.log("Nome:", nome);
+                console.log("E-mail:", email);
+                console.log("Cargo:", cargo);
+                console.log("Currículo:", arquivo.name);
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

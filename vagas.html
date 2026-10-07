@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MeuEmprego - Vagas e Perfil</title>
+
+    <style>
+
+        /* =========================
+           CONFIGURAÇÕES GERAIS
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #071a35;
+            color: #333;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================== */
+
+        header {
+            background: #ffffff;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            color: #071a35;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #174d8c;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #071a35;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #174d8c;
+        }
+
+        /* =========================
+           CONTEÚDO
+        ========================== */
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .titulo-principal {
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .titulo-principal h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .titulo-principal p {
+            color: #d9e2ef;
+        }
+
+        /* =========================
+           GRID
+        ========================== */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 25px;
+        }
+
+        /* =========================
+           CARDS
+        ========================== */
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        .card h2 {
+            color: #071a35;
+            margin-bottom: 20px;
+            font-size: 21px;
+        }
+
+        /* =========================
+           PERFIL
+        ========================== */
+
+        .perfil-topo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            background: #071a35;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            font-weight: bold;
+            margin: auto;
+            margin-bottom: 12px;
+        }
+
+        .perfil-topo h3 {
+            color: #071a35;
+            font-size: 21px;
+        }
+
+        .cargo {
+            color: #174d8c;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           INFORMAÇÕES
+        ========================== */
+
+        .info {
+            border-top: 1px solid #ddd;
+            padding: 12px 0;
+        }
+
+        .info strong {
+            display: block;
+            color: #071a35;
+            margin-bottom: 4px;
+        }
+
+        .info span {
+            color: #555;
+            word-break: break-word;
+        }
+
+        /* =========================
+           HABILIDADES
+        ========================== */
+
+        .habilidades {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .habilidade {
+            background: #e8f0fa;
+            color: #174d8c;
+            padding: 7px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           VAGAS
+        ========================== */
+
+        .vagas {
+            display: grid;
+            gap: 15px;
+        }
+
+        .vaga {
+            border: 1px solid #dce2e9;
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .vaga:hover {
+            border-color: #174d8c;
+            box-shadow: 0 5px 15px rgba(7,26,53,0.12);
+            transform: translateY(-2px);
+        }
+
+        .vaga h3 {
+            color: #071a35;
+            margin-bottom: 7px;
+        }
+
+        .empresa {
+            color: #174d8c;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .local {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .descricao {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background: #f0f2f5;
+            color: #555;
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        /* =========================
+           BOTÃO
+        ========================== */
+
+        .botao {
+            border: none;
+            background: #071a35;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background: #174d8c;
+        }
+
+        /* =========================
+           BUSCA
+        ========================== */
+
+        .busca {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .busca input {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ccd2da;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .busca input:focus {
+            border-color: #174d8c;
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================== */
+
+        footer {
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================== */
+
+        @media (max-width: 850px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            main {
+                padding: 25px 15px;
+            }
+
+            .busca {
+                flex-direction: column;
+            }
+
+            .titulo-principal h1 {
+                font-size: 26px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header>
+
+        <div class="logo">
+            Meu<span>Emprego</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Meu currículo</a>
+            <a href="vagas.html">Vagas</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main>
+
+        <div class="titulo-principal">
+
+            <h1>
+                Olá, candidato!
+            </h1>
+
+            <p>
+                Confira seu perfil e encontre uma oportunidade
+                de trabalho.
+            </p>
+
+        </div>
+
+
+        <div class="grid">
+
+
+            <!-- =========================
+                 PERFIL DO CANDIDATO
+            ========================== -->
+
+            <section class="card">
+
+                <div class="perfil-topo">
+
+                    <div class="avatar">
+                        JS
+                    </div>
+
+                    <h3 id="nomePerfil">
+                        João da Silva
+                    </h3>
+
+                    <p
+                        class="cargo"
+                        id="cargoPerfil"
+                    >
+                        Assistente Administrativo
+                    </p>
+
+                </div>
+
+
+                <div class="info">
+
+                    <strong>E-mail</strong>
+
+                    <span id="emailPerfil">
+                        joao@email.com
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <strong>Telefone</strong>
+
+                    <span id="telefonePerfil">
+                        (11) 99999-9999
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <strong>Localização</strong>
+
+                    <span id="cidadePerfil">
+                        São Paulo - SP
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <strong>Formação</strong>
+
+                    <span>
+                        Ensino Médio Completo
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <strong>Habilidades</strong>
+
+                    <div class="habilidades">
+
+                        <span class="habilidade">
+                            Excel
+                        </span>
+
+                        <span class="habilidade">
+                            Atendimento
+                        </span>
+
+                        <span class="habilidade">
+                            Comunicação
+                        </span>
+
+                        <span class="habilidade">
+                            Organização
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+                <button
+                    class="botao"
+                    onclick="editarPerfil()"
+                >
+                    Editar currículo
+                </button>
+
+            </section>
+
+
+            <!-- =========================
+                 VAGAS
+            ========================== -->
+
+            <section class="card">
+
+                <h2>
+                    Vagas disponíveis
+                </h2>
+
+
+                <!-- BUSCA -->
+
+                <div class="busca">
+
+                    <input
+                        type="text"
+                        id="pesquisa"
+                        placeholder="Pesquise por cargo ou empresa..."
+                    >
+
+                    <button
+                        class="botao"
+                        onclick="buscarVagas()"
+                    >
+                        Buscar
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="vagas"
+                    id="listaVagas"
+                >
+
+
+                    <!-- VAGA 1 -->
+
+                    <div
+                        class="vaga"
+                        data-busca="assistente administrativo empresa alpha"
+                    >
+
+                        <h3>
+                            Assistente Administrativo
+                        </h3>
+
+                        <p class="empresa">
+                            Empresa Alpha
+                        </p>
+
+                        <p class="local">
+                            📍 São Paulo - SP
+                        </p>
+
+                        <p class="descricao">
+                            A empresa procura profissional para
+                            atuar com organização de documentos,
+                            atendimento e rotinas administrativas.
+                        </p>
+
+                        <div class="tags">
+
+                            <span class="tag">
+                                CLT
+                            </span>
+
+                            <span class="tag">
+                                Presencial
+                            </span>
+
+                            <span class="tag">
+                                Ensino Médio
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="botao"
+                            onclick="candidatar('Assistente Administrativo')"
+                        >
+                            Quero me candidatar
+                        </button>
+
+                    </div>
+
+
+                    <!-- VAGA 2 -->
+
+                    <div
+                        class="vaga"
+                        data-busca="atendente comercial empresa beta"
+                    >
+
+                        <h3>
+                            Atendente Comercial
+                        </h3>
+
+                        <p class="empresa">
+                            Empresa Beta
+                        </p>
+
+                        <p class="local">
+                            📍 Campinas - SP
+                        </p>
+
+                        <p class="descricao">
+                            Atendimento ao cliente, suporte
+                            comercial e organização de pedidos.
+                        </p>
+
+                        <div class="tags">
+
+                            <span class="tag">
+                                CLT
+                            </span>
+
+                            <span class="tag">
+                                Presencial
+                            </span>
+
+                            <span class="tag">
+                                Sem experiência
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="botao"
+                            onclick="candidatar('Atendente Comercial')"
+                        >
+                            Quero me candidatar
+                        </button>
+
+                    </div>
+
+
+                    <!-- VAGA 3 -->
+
+                    <div
+                        class="vaga"
+                        data-busca="auxiliar de logística empresa gama"
+                    >
+
+                        <h3>
+                            Auxiliar de Logística
+                        </h3>
+
+                        <p class="empresa">
+                            Empresa Gama
+                        </p>
+
+                        <p class="local">
+                            📍 Guarulhos - SP
+                        </p>
+
+                        <p class="descricao">
+                            Atuação no controle de estoque,
+                            separação de produtos e organização
+                            do centro de distribuição.
+                        </p>
+
+                        <div class="tags">
+
+                            <span class="tag">
+                                CLT
+                            </span>
+
+                            <span class="tag">
+                                Presencial
+                            </span>
+
+                            <span class="tag">
+                                Treinamento
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="botao"
+                            onclick="candidatar('Auxiliar de Logística')"
+                        >
+                            Quero me candidatar
+                        </button>
+
+                    </div>
+
+
+                    <!-- VAGA 4 -->
+
+                    <div
+                        class="vaga"
+                        data-busca="recepcionista empresa delta"
+                    >
+
+                        <h3>
+                            Recepcionista
+                        </h3>
+
+                        <p class="empresa">
+                            Empresa Delta
+                        </p>
+
+                        <p class="local">
+                            📍 São Paulo - SP
+                        </p>
+
+                        <p class="descricao">
+                            Recepção de clientes, atendimento
+                            telefônico e organização de agenda.
+                        </p>
+
+                        <div class="tags">
+
+                            <span class="tag">
+                                CLT
+                            </span>
+
+                            <span class="tag">
+                                Presencial
+                            </span>
+
+                            <span class="tag">
+                                Ensino Médio
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="botao"
+                            onclick="candidatar('Recepcionista')"
+                        >
+                            Quero me candidatar
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer>
+
+        © 2026 MeuEmprego - Conectando pessoas
+        a novas oportunidades.
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        /* =========================
+           BUSCAR VAGAS
+        ========================== */
+
+        function buscarVagas() {
+
+            const pesquisa =
+                document
+                .getElementById("pesquisa")
+                .value
+                .toLowerCase()
+                .trim();
+
+
+            const vagas =
+                document.querySelectorAll(".vaga");
+
+
+            vagas.forEach(function(vaga) {
+
+                const texto =
+                    vaga
+                    .getAttribute("data-busca")
+                    .toLowerCase();
+
+
+                if (texto.includes(pesquisa)) {
+
+                    vaga.style.display = "block";
+
+                } else {
+
+                    vaga.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        /* =========================
+           PESQUISA AO DIGITAR
+        ========================== */
+
+        document
+        .getElementById("pesquisa")
+        .addEventListener(
+            "input",
+            buscarVagas
+        );
+
+
+        /* =========================
+           CANDIDATAR-SE
+        ========================== */
+
+        function candidatar(vaga) {
+
+            alert(
+                "Candidatura realizada para a vaga de: "
+                + vaga
+                + "\n\nSeu currículo será encaminhado para a empresa."
+            );
+
+        }
+
+
+        /* =========================
+           EDITAR PERFIL
+        ========================== */
+
+        function editarPerfil() {
+
+            window.location.href = "index.html";
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
