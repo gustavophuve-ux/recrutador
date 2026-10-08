@@ -1,725 +1,387 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html> <html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Meu Emprego - Cadastre seu Currículo</title>
+<title>MeuEmprego - Cadastre seu Currículo</title>
 
-    <style>
+<style>
 
-        /* =========================
-           CONFIGURAÇÕES GERAIS
-        ========================== */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+body { background: #071a35; color: #333; }
 
-        body {
-            background: #071a35;
-            color: #333;
-        }
+header { background: #ffffff; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
 
-        /* =========================
-           CABEÇALHO
-        ========================== */
+.logo { color: #071a35; font-size: 26px; font-weight: bold; }
 
-        header {
-            background: #ffffff;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
+.logo span { color: #174d8c; }
 
-        .logo {
-            color: #071a35;
-            font-size: 26px;
-            font-weight: bold;
-        }
+nav a { text-decoration: none; color: #071a35; margin-left: 25px; font-weight: bold; }
 
-        .logo span {
-            color: #174d8c;
-        }
+nav a:hover { color: #174d8c; }
 
-        nav a {
-            text-decoration: none;
-            color: #071a35;
-            margin-left: 25px;
-            font-weight: bold;
-        }
+main { padding: 50px 20px; }
 
-        nav a:hover {
-            color: #174d8c;
-        }
+.container { max-width: 800px; margin: auto; background: #ffffff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 35px rgba(0,0,0,0.35); }
 
-        /* =========================
-           ÁREA PRINCIPAL
-        ========================== */
+.titulo { text-align: center; margin-bottom: 35px; }
 
-        main {
-            padding: 50px 20px;
-        }
+.titulo h1 { color: #071a35; font-size: 32px; margin-bottom: 10px; }
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.35);
-        }
+.titulo p { color: #666; font-size: 16px; }
 
-        /* =========================
-           TÍTULO
-        ========================== */
+.secao { margin-bottom: 30px; }
 
-        .titulo {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+.secao h2 { color: #071a35; border-bottom: 2px solid #071a35; padding-bottom: 8px; margin-bottom: 20px; font-size: 20px; }
 
-        .titulo h1 {
-            color: #071a35;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
+.linha { display: flex; gap: 20px; }
 
-        .titulo p {
-            color: #666;
-            font-size: 16px;
-        }
+.campo { flex: 1; margin-bottom: 18px; }
 
-        /* =========================
-           SEÇÕES
-        ========================== */
+.campo label { display: block; color: #071a35; font-weight: bold; margin-bottom: 7px; }
 
-        .secao {
-            margin-bottom: 30px;
-        }
+.campo input, .campo select, .campo textarea { width: 100%; padding: 13px; border: 1px solid #ccd2da; border-radius: 8px; outline: none; font-size: 15px; }
 
-        .secao h2 {
-            color: #071a35;
-            border-bottom: 2px solid #071a35;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: #071a35; box-shadow: 0 0 5px rgba(7,26,53,0.2); }
 
-        /* =========================
-           CAMPOS
-        ========================== */
+.campo textarea { min-height: 120px; resize: vertical; }
 
-        .linha {
-            display: flex;
-            gap: 20px;
-        }
+.upload { border: 2px dashed #174d8c; background: #f5f8fc; padding: 30px; text-align: center; border-radius: 10px; }
 
-        .campo {
-            flex: 1;
-            margin-bottom: 18px;
-        }
+.upload p { color: #555; margin-bottom: 15px; }
 
-        .campo label {
-            display: block;
-            color: #071a35;
-            font-weight: bold;
-            margin-bottom: 7px;
-        }
+.upload input { border: none; }
 
-        .campo input,
-        .campo select,
-        .campo textarea {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #ccd2da;
-            border-radius: 8px;
-            outline: none;
-            font-size: 15px;
-        }
+.botao { width: 100%; padding: 16px; background: #071a35; color: #ffffff; border: none; border-radius: 8px; font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
-        .campo input:focus,
-        .campo select:focus,
-        .campo textarea:focus {
-            border-color: #071a35;
-            box-shadow: 0 0 5px rgba(7,26,53,0.2);
-        }
+.botao:hover { background: #174d8c; transform: translateY(-2px); }
 
-        .campo textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
+#mensagem { text-align: center; margin-top: 20px; font-weight: bold; }
 
-        /* =========================
-           ENVIO DO CURRÍCULO
-        ========================== */
+.sucesso { color: #16803c; }
 
-        .upload {
-            border: 2px dashed #174d8c;
-            background: #f5f8fc;
-            padding: 30px;
-            text-align: center;
-            border-radius: 10px;
-        }
+.erro { color: #d32f2f; }
 
-        .upload p {
-            color: #555;
-            margin-bottom: 15px;
-        }
+footer { text-align: center; color: #ffffff; padding: 25px; font-size: 14px; }
 
-        .upload input {
-            border: none;
-        }
+@media (max-width: 650px) {
 
-        /* =========================
-           BOTÃO
-        ========================== */
+header { flex-direction: column; gap: 15px; }
 
-        .botao {
-            width: 100%;
-            padding: 16px;
-            background: #071a35;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+nav a { margin: 0 8px; }
 
-        .botao:hover {
-            background: #174d8c;
-            transform: translateY(-2px);
-        }
+.container { padding: 25px 20px; }
 
-        /* =========================
-           MENSAGEM
-        ========================== */
+.linha { flex-direction: column; gap: 0; }
 
-        #mensagem {
-            text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
-        }
+.titulo h1 { font-size: 26px; } }
 
-        .sucesso {
-            color: #16803c;
-        }
-
-        .erro {
-            color: #d32f2f;
-        }
-
-        /* =========================
-           RODAPÉ
-        ========================== */
-
-        footer {
-            text-align: center;
-            color: #ffffff;
-            padding: 25px;
-            font-size: 14px;
-        }
-
-        /* =========================
-           RESPONSIVIDADE
-        ========================== */
-
-        @media (max-width: 650px) {
-
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            nav a {
-                margin: 0 8px;
-            }
-
-            .container {
-                padding: 25px 20px;
-            }
-
-            .linha {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .titulo h1 {
-                font-size: 26px;
-            }
-        }
-
-    </style>
+</style>
 
 </head>
 
-
 <body>
 
+<header>
 
-    <!-- =========================
-         CABEÇALHO
-    ========================== -->
+<div class="logo"> Meu<span>Emprego</span> </div>
 
-    <header>
+<nav> <a href="index.html">Início</a> <a href="vagas.html">Vagas</a> <a href="#">Sobre nós</a> </nav>
 
-        <div class="logo">
-            Meu<span>Emprego</span>
-        </div>
+</header>
 
-        <nav>
-            <a href="#">Início</a>
-            <a href="#">Vagas</a>
-            <a href="#">Sobre nós</a>
-        </nav>
+<main>
 
-    </header>
+<div class="container">
 
+<div class="titulo">
 
-    <!-- =========================
-         CONTEÚDO
-    ========================== -->
+<h1>Cadastre seu currículo</h1>
 
-    <main>
+<p> Encontre novas oportunidades de emprego cadastrando seu perfil profissional. </p>
 
-        <div class="container">
+</div>
 
-            <div class="titulo">
+<form id="curriculoForm">
 
-                <h1>Cadastre seu currículo</h1>
+<!-- DADOS PESSOAIS -->
 
-                <p>
-                    Encontre novas oportunidades de emprego
-                    cadastrando seu perfil profissional.
-                </p>
+<div class="secao">
 
-            </div>
+<h2>Dados pessoais</h2>
 
+<div class="linha">
 
-            <form id="curriculoForm">
+<div class="campo">
 
+<label for="nome"> Nome completo </label>
 
-                <!-- =========================
-                     DADOS PESSOAIS
-                ========================== -->
+<input type="text" id="nome" placeholder="Digite seu nome completo" required >
 
-                <div class="secao">
+</div>
 
-                    <h2>Dados pessoais</h2>
+<div class="campo">
 
-                    <div class="linha">
+<label for="nascimento"> Data de nascimento </label>
 
-                        <div class="campo">
+<input type="date" id="nascimento" required >
 
-                            <label for="nome">
-                                Nome completo
-                            </label>
+</div>
 
-                            <input
-                                type="text"
-                                id="nome"
-                                placeholder="Digite seu nome completo"
-                                required
-                            >
+</div>
 
-                        </div>
+<div class="linha">
 
+<div class="campo">
 
-                        <div class="campo">
+<label for="email"> E-mail </label>
 
-                            <label for="nascimento">
-                                Data de nascimento
-                            </label>
+<input type="email" id="email" placeholder="seuemail@email.com" required >
 
-                            <input
-                                type="date"
-                                id="nascimento"
-                                required
-                            >
+</div>
 
-                        </div>
+<div class="campo">
 
-                    </div>
+<label for="telefone"> Telefone </label>
 
+<input type="tel" id="telefone" placeholder="(00) 00000-0000" maxlength="15" required >
 
-                    <div class="linha">
+</div>
 
-                        <div class="campo">
+</div>
 
-                            <label for="email">
-                                E-mail
-                            </label>
+<div class="campo">
 
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder="seuemail@email.com"
-                                required
-                            >
+<label for="cidade"> Cidade </label>
 
-                        </div>
+<input type="text" id="cidade" placeholder="Ex.: São Paulo" required >
 
+</div>
 
-                        <div class="campo">
+</div>
 
-                            <label for="telefone">
-                                Telefone
-                            </label>
+<!-- INFORMAÇÕES PROFISSIONAIS -->
 
-                            <input
-                                type="tel"
-                                id="telefone"
-                                placeholder="(00) 00000-0000"
-                                maxlength="15"
-                                required
-                            >
+<div class="secao">
 
-                        </div>
+<h2>Informações profissionais</h2>
 
-                    </div>
+<div class="campo">
 
+<label for="cargo"> Cargo desejado </label>
 
-                    <div class="campo">
+<input type="text" id="cargo" placeholder="Ex.: Assistente administrativo" required >
 
-                        <label for="cidade">
-                            Cidade
-                        </label>
+</div>
 
-                        <input
-                            type="text"
-                            id="cidade"
-                            placeholder="Ex.: São Paulo"
-                            required
-                        >
+<div class="campo">
 
-                    </div>
+<label for="experiencia"> Experiência profissional </label>
 
-                </div>
+<textarea id="experiencia" placeholder="Conte um pouco sobre suas experiências profissionais..." ></textarea>
 
+</div>
 
-                <!-- =========================
-                     INFORMAÇÕES PROFISSIONAIS
-                ========================== -->
+<div class="campo">
 
-                <div class="secao">
+<label for="formacao"> Formação acadêmica </label>
 
-                    <h2>Informações profissionais</h2>
+<textarea id="formacao" placeholder="Ex.: Ensino médio completo, Administração - Universidade..." ></textarea>
 
+</div>
 
-                    <div class="campo">
+<div class="campo">
 
-                        <label for="cargo">
-                            Cargo desejado
-                        </label>
+<label for="habilidades"> Habilidades </label>
 
-                        <input
-                            type="text"
-                            id="cargo"
-                            placeholder="Ex.: Assistente administrativo"
-                            required
-                        >
+<textarea id="habilidades" placeholder="Ex.: Excel, atendimento ao cliente, comunicação..." ></textarea>
 
-                    </div>
+</div>
 
+</div>
 
-                    <div class="campo">
+<!-- CURRÍCULO -->
 
-                        <label for="experiencia">
-                            Experiência profissional
-                        </label>
+<div class="secao">
 
-                        <textarea
-                            id="experiencia"
-                            placeholder="Conte um pouco sobre suas experiências profissionais..."
-                        ></textarea>
+<h2>Seu currículo</h2>
 
-                    </div>
+<div class="upload">
 
+<p> Selecione seu currículo em formato PDF. </p>
 
-                    <div class="campo">
+<input type="file" id="curriculo" accept=".pdf" required >
 
-                        <label for="formacao">
-                            Formação acadêmica
-                        </label>
+</div>
 
-                        <textarea
-                            id="formacao"
-                            placeholder="Ex.: Ensino médio completo, Administração - Universidade..."
-                        ></textarea>
+</div>
 
-                    </div>
+<button type="submit" class="botao" > Cadastrar meu currículo </button>
 
+<div id="mensagem"></div>
 
-                    <div class="campo">
+</form>
 
-                        <label for="habilidades">
-                            Habilidades
-                        </label>
+</div>
 
-                        <textarea
-                            id="habilidades"
-                            placeholder="Ex.: Excel, atendimento ao cliente, comunicação..."
-                        ></textarea>
+</main>
 
-                    </div>
+<footer>
 
-                </div>
+© 2026 MeuEmprego - Conectando pessoas a novas oportunidades.
 
+</footer>
 
-                <!-- =========================
-                     CURRÍCULO
-                ========================== -->
+<script>
 
-                <div class="secao">
+const formulario = document.getElementById("curriculoForm");
 
-                    <h2>Seu currículo</h2>
+const telefone = document.getElementById("telefone");
 
-                    <div class="upload">
+const curriculo = document.getElementById("curriculo");
 
-                        <p>
-                            Selecione seu currículo em formato PDF.
-                        </p>
+const mensagem = document.getElementById("mensagem");
 
-                        <input
-                            type="file"
-                            id="curriculo"
-                            accept=".pdf"
-                            required
-                        >
+/* ========================= MÁSCARA DO TELEFONE ========================== */
 
-                    </div>
+telefone.addEventListener("input", function () {
 
-                </div>
+let valor = this.value.replace(/\D/g, "");
 
+if (valor.length <= 10) {
 
-                <!-- =========================
-                     BOTÃO
-                ========================== -->
+valor = valor.replace( /(\d{2})(\d)/, "($1) $2" );
 
-                <button
-                    type="submit"
-                    class="botao"
-                >
-                    Cadastrar meu currículo
-                </button>
+valor = valor.replace( /(\d{4})(\d)/, "$1-$2" );
 
+} else {
 
-                <div id="mensagem"></div>
+valor = valor.replace( /(\d{2})(\d)/, "($1) $2" );
 
+valor = valor.replace( /(\d{5})(\d)/, "$1-$2" );
 
-            </form>
+}
 
-        </div>
+this.value = valor;
 
-    </main>
+});
 
+/* ========================= ENVIO DO FORMULÁRIO ========================== */
 
-    <!-- =========================
-         RODAPÉ
-    ========================== -->
+formulario.addEventListener("submit", function(event) {
 
-    <footer>
+event.preventDefault();
 
-        © 2026 MeuEmprego - Conectando pessoas
-        a novas oportunidades.
+const nome = document.getElementById("nome").value.trim();
 
-    </footer>
+const nascimento = document.getElementById("nascimento").value;
 
+const email = document.getElementById("email").value.trim();
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
+const telefoneValor = telefone.value.trim();
 
-    <script>
+const cidade = document.getElementById("cidade").value.trim();
 
-        const formulario =
-            document.getElementById("curriculoForm");
+const cargo = document.getElementById("cargo").value.trim();
 
-        const telefone =
-            document.getElementById("telefone");
+const experiencia = document.getElementById("experiencia").value.trim();
 
-        const curriculo =
-            document.getElementById("curriculo");
+const formacao = document.getElementById("formacao").value.trim();
 
-        const mensagem =
-            document.getElementById("mensagem");
+const habilidades = document.getElementById("habilidades").value.trim();
 
+const telefoneNumeros = telefone.value.replace(/\D/g, "");
 
-        /* =========================
-           MÁSCARA DO TELEFONE
-        ========================== */
+/* ========================= VALIDAÇÕES ========================== */
 
-        telefone.addEventListener("input", function () {
+if (nome.length < 3) {
 
-            let valor =
-                this.value.replace(/\D/g, "");
+mensagem.textContent = "Digite seu nome completo.";
 
-            if (valor.length <= 10) {
+mensagem.className = "erro";
 
-                valor = valor.replace(
-                    /(\d{2})(\d)/,
-                    "($1) $2"
-                );
+return; }
 
-                valor = valor.replace(
-                    /(\d{4})(\d)/,
-                    "$1-$2"
-                );
+if (telefoneNumeros.length < 10) {
 
-            } else {
+mensagem.textContent = "Digite um telefone válido.";
 
-                valor = valor.replace(
-                    /(\d{2})(\d)/,
-                    "($1) $2"
-                );
+mensagem.className = "erro";
 
-                valor = valor.replace(
-                    /(\d{5})(\d)/,
-                    "$1-$2"
-                );
+return; }
 
-            }
+if (cargo.length < 2) {
 
-            this.value = valor;
+mensagem.textContent = "Digite o cargo desejado.";
 
-        });
+mensagem.className = "erro";
 
+return; }
 
-        /* =========================
-           ENVIO DO FORMULÁRIO
-        ========================== */
+if (curriculo.files.length === 0) {
 
-        formulario.addEventListener(
-            "submit",
-            function(event) {
+mensagem.textContent = "Selecione seu currículo em PDF.";
 
-                event.preventDefault();
+mensagem.className = "erro";
 
+return; }
 
-                const nome =
-                    document
-                    .getElementById("nome")
-                    .value
-                    .trim();
+const arquivo = curriculo.files[0];
 
+if ( arquivo.type !== "application/pdf" && !arquivo.name.toLowerCase().endsWith(".pdf") ) {
 
-                const email =
-                    document
-                    .getElementById("email")
-                    .value
-                    .trim();
+mensagem.textContent = "O currículo precisa estar em PDF.";
 
+mensagem.className = "erro";
 
-                const cargo =
-                    document
-                    .getElementById("cargo")
-                    .value
-                    .trim();
+return; }
 
+/* ========================= SALVAR INFORMAÇÕES NO LOCALSTORAGE ========================== */
 
-                const telefoneNumeros =
-                    telefone.value.replace(
-                        /\D/g,
-                        ""
-                    );
+const dadosCandidato = {
 
+nome: nome,
 
-                /* =========================
-                   VALIDAÇÕES
-                ========================== */
+nascimento: nascimento,
 
-                if (nome.length < 3) {
+email: email,
 
-                    mensagem.textContent =
-                        "Digite seu nome completo.";
+telefone: telefoneValor,
 
-                    mensagem.className = "erro";
+cidade: cidade,
 
-                    return;
-                }
+cargo: cargo,
 
+experiencia: experiencia,
 
-                if (telefoneNumeros.length < 10) {
+formacao: formacao,
 
-                    mensagem.textContent =
-                        "Digite um telefone válido.";
+habilidades: habilidades,
 
-                    mensagem.className = "erro";
+nomeCurriculo: arquivo.name
 
-                    return;
-                }
+};
 
+localStorage.setItem( "dadosCandidato", JSON.stringify(dadosCandidato) );
 
-                if (cargo.length < 2) {
+/* ========================= MENSAGEM DE SUCESSO ========================== */
 
-                    mensagem.textContent =
-                        "Digite o cargo desejado.";
+mensagem.textContent = "Currículo cadastrado com sucesso!";
 
-                    mensagem.className = "erro";
+mensagem.className = "sucesso";
 
-                    return;
-                }
+/* * Aguarda um pequeno tempo para * o usuário visualizar a mensagem * e depois abre a página do perfil. */
 
+setTimeout(function() {
 
-                /* =========================
-                   VALIDAÇÃO DO PDF
-                ========================== */
+window.location.href = "vagas.html";
 
-                if (curriculo.files.length === 0) {
+}, 1000);
 
-                    mensagem.textContent =
-                        "Selecione seu currículo em PDF.";
+});
 
-                    mensagem.className = "erro";
-
-                    return;
-                }
-
-
-                const arquivo =
-                    curriculo.files[0];
-
-
-                if (arquivo.type !== "application/pdf") {
-
-                    mensagem.textContent =
-                        "O currículo precisa estar em PDF.";
-
-                    mensagem.className = "erro";
-
-                    return;
-                }
-
-
-                /* =========================
-                   SUCESSO
-                ========================== */
-
-                mensagem.textContent =
-                    "Currículo cadastrado com sucesso!";
-
-                mensagem.className = "sucesso";
-
-
-                console.log("Nome:", nome);
-                console.log("E-mail:", email);
-                console.log("Cargo:", cargo);
-                console.log("Currículo:", arquivo.name);
-
-            }
-        );
-
-    </script>
-
+</script>
 
 </body>
 
-</html>
+</html> :::
